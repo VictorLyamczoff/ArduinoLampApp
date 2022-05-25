@@ -1,8 +1,8 @@
-color red = color(255,0,0);
-color green = color(0,255,0);
-color blue = color(0,0,255);
-color white = color(255,255,255);
-color black = color(0,0,0);
+color red = color(255, 0, 0);
+color green = color(0, 255, 0);
+color blue = color(0, 0, 255);
+color white = color(255, 255, 255);
+color black = color(0, 0, 0);
 
 byte curTab = 0;
 
@@ -42,11 +42,11 @@ void tabs() {
 void drawBTConnect(int pos_x, int pos_y, int size, boolean center) {
 
   if (bt.getConnectedDeviceNames().isEmpty()) {
-  fill(red);
-  textSize(int(size*_ui_scale));
-  if (center) textAlign(CENTER, CENTER);
-  else textAlign(LEFT, CENTER);
-  text("Status: Not connected", pos_x, pos_y+10);
+    fill(red);
+    textSize(int(size*_ui_scale));
+    if (center) textAlign(CENTER, CENTER);
+    else textAlign(LEFT, CENTER);
+    text("Status: Not connected", pos_x, pos_y+10);
   } else {
     btStatus="";
     ArrayList<String> devices = bt.getConnectedDeviceNames();  // 20
@@ -54,27 +54,19 @@ void drawBTConnect(int pos_x, int pos_y, int size, boolean center) {
     {
       btStatus = "Connect to "+device;
     }
-  fill(green);
-  textSize(int(size*_ui_scale));
-  if (center) textAlign(CENTER, CENTER);
-  else textAlign(LEFT, CENTER);
-  text("Status: "+btStatus, pos_x, pos_y+10);
+    fill(green);
+    textSize(int(size*_ui_scale));
+    if (center) textAlign(CENTER, CENTER);
+    else textAlign(LEFT, CENTER);
+    text("Status: "+btStatus, pos_x, pos_y+10);
   }
-
 }
 
 void effTab() {
-  // uiLight();
-
-  //   beginCard(0, 0, width, height);
 
   LabelCenter("ArduinoLamp", 18, (width/2), 86);
 
   uiResetStep(300);
-
-
-  
-  
 
   if (Button("Connect", (width/2)-330, uiStep(), 320, true)) {
 
@@ -108,12 +100,11 @@ void effTab() {
     }
   }
 
-  // LabelCenter("Status: "+btStatus, 12, width/2, uiStep());
   drawBTConnect(width/2, uiStep(), 12, true);
 
   uiResetStep(600);
 
-  if (Button("I/O", (width/2)-110, uiStep()-(110/2), 220, 220, true)) {
+  if (Button("I/O", (width/2)-110, uiStep()-55, 220, 220, true)) {
     String m = "$1;";
     bt.broadcast(m.getBytes());
     println(m);
@@ -131,7 +122,6 @@ void effTab() {
     println(m);
   }
 
-  // uiTextSize(int(6*3.5));
 
   uiResetStep(900);
 
@@ -146,7 +136,6 @@ void effTab() {
   }
 
   LabelCenter("Brightness: " + str(int(btBrightness)), 12, (width/2), uiPrevStep());
-  // LabelCenter(str(int(btBrightness)), 12, 800, uiPrevStep());
 
   if (Button("+", 840, uiPrevStep(), 140, 140, true)) {
     if (btBrightness <= 255) {
@@ -184,7 +173,6 @@ void effTab() {
   }
 
   LabelCenter("Scale: " + str(int(btScale)), 12, (width/2), uiPrevStep());
-  // LabelCenter(str(int(btBrightness)), 12, 800, uiPrevStep());
 
   if (Button("+", 840, uiPrevStep(), 140, 140, true)) {
     if (btScale <= 255) {
@@ -218,7 +206,6 @@ void effTab() {
   }
 
   LabelCenter("Speed: " + str(int(btSpeed)), 12, (width/2), uiPrevStep());
-  // LabelCenter(str(int(btBrightness)), 12, 800, uiPrevStep());
 
   if (Button("+", 840, uiPrevStep(), 140, 140, true)) {
     if (btSpeed <= 255) {
@@ -244,8 +231,6 @@ void effTab() {
     bt.broadcast(m.getBytes());
     println(m);
   }
-
-  //   endCard();
 }
 
 void cfgTab() {
