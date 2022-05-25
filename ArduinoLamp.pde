@@ -8,6 +8,10 @@ import ketai.net.*;
 
 //import oscP5.*;
 
+String[] file;
+
+PrintWriter output;
+
 KetaiBluetooth bt;
 String info = "";
 KetaiList klist;
@@ -39,12 +43,29 @@ void onActivityResult(int requestCode, int resultCode, Intent data) {
 //********************************************************************
 
 void setup()
-{   
+{ 
   fullScreen();
   uiSetScale(uiScale);
   smooth(8);
 
   bt.start();
+
+  file = loadStrings("settings.txt");
+  if (file == null) {
+    println("Settings text file is empty\nCreate new file");
+    file = new String[1];
+    file[0] = "1";
+    saveStrings("settings.txt", file);
+  }
+  // println(file);
+
+// ===================================== Запись в файл =====================================
+  // file[0] = "0";
+  // saveStrings("setttingss.txt", file);
+  // for (int i = 0; i < file.length; i++) {
+  //     info+=file[i]+"\n";
+  // }
+// ===================================== Запись в файл =====================================
 
   //   PFont font;
   // // чтобы шрифт загрузился корректно, 
@@ -68,7 +89,6 @@ void drawBTConnect(int pos_x, int pos_y) {
 }
 
 void draw() {
-
   tabs();
 }
 
