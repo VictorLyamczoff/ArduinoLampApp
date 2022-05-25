@@ -70,33 +70,41 @@ void effTab() {
 
   if (Button("Connect", (width/2)-330, uiStep(), 320, true)) {
 
-    String btInfo = "";
-    listState = CONNECT_LIST;
+    if (!connectStatus) {
+      String btInfo = "";
+      listState = CONNECT_LIST;
 
-    if (bt.getDiscoveredDeviceNames().size() > 0) {
-      ArrayList<String> list = bt.getDiscoveredDeviceNames();
-      list.add("CANCEL");
-      klist = new KetaiList(this, list);
-    } else if (bt.getPairedDeviceNames().size() > 0) {
-      ArrayList<String> list = bt.getPairedDeviceNames();
-      list.add("CANCEL");
-      klist = new KetaiList(this, list);
+      if (bt.getDiscoveredDeviceNames().size() > 0) {
+        ArrayList<String> list = bt.getDiscoveredDeviceNames();
+        list.add("CANCEL");
+        klist = new KetaiList(this, list);
+      } else if (bt.getPairedDeviceNames().size() > 0) {
+        ArrayList<String> list = bt.getPairedDeviceNames();
+        list.add("CANCEL");
+        klist = new KetaiList(this, list);
+      }
+      connectStatus = true;
     }
   }
 
   if (Button("Disconnect", (width/2)+10, uiPrevStep(), 320, true)) {
 
-    String btInfo = "";
-    listState = DISCONNECT_LIST;
+    if (connectStatus) {
 
-    if (bt.getDiscoveredDeviceNames().size() > 0) {
-      ArrayList<String> list = bt.getDiscoveredDeviceNames();
-      list.add("CANCEL");
-      klist = new KetaiList(this, list);
-    } else if (bt.getPairedDeviceNames().size() > 0) {
-      ArrayList<String> list = bt.getPairedDeviceNames();
-      list.add("CANCEL");
-      klist = new KetaiList(this, list);
+      String btInfo = "";
+      listState = DISCONNECT_LIST;
+
+      if (bt.getDiscoveredDeviceNames().size() > 0) {
+        ArrayList<String> list = bt.getDiscoveredDeviceNames();
+        list.add("CANCEL");
+        klist = new KetaiList(this, list);
+      } else if (bt.getPairedDeviceNames().size() > 0) {
+        ArrayList<String> list = bt.getPairedDeviceNames();
+        list.add("CANCEL");
+        klist = new KetaiList(this, list);
+      }
+
+      connectStatus = false;
     }
   }
 

@@ -22,6 +22,7 @@ boolean isConfiguring = true;
 int CONNECT_LIST = 0; 
 int DISCONNECT_LIST = 1;
 int listState = CONNECT_LIST;
+boolean connectStatus = false;
 
 int uiScale = 4;
 
