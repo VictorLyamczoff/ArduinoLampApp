@@ -21,11 +21,11 @@ void tabs() {
   int h = w / 4;
   int y = height - h;
 
-  if (Button("eff", 0, y, w, h, false)) {
+  if (Button("Effects", 0, y, w, h, false)) {
     curTab = 0;
   }
 
-  if (Button("cfg", w*1, y, w, h, false)) {
+  if (Button("Settings", w*1, y, w, h, false)) {
     curTab = 1;
   }
 
@@ -58,11 +58,20 @@ void drawBTConnect(int pos_x, int pos_y, int size, boolean center) {
     textSize(int(size*_ui_scale));
     if (center) textAlign(CENTER, CENTER);
     else textAlign(LEFT, CENTER);
-    text("Status: "+btStatus, pos_x, pos_y+10);
+    text("Status: "+btStatus, pos_x, pos_y+20);
   }
 }
 
 void effTab() {
+
+  int w = width / 2;
+  int h = w / 4;
+  int y = height - h;
+
+  // Divider(0, y-4, w, 2);
+  noStroke();
+  fill(c_hover);
+  rect(0, y-6, w, 4, 2);
 
   LabelCenter("ArduinoLamp", 18, (width/2), 86);
 
@@ -242,6 +251,14 @@ void effTab() {
 }
 
 void cfgTab() {
+  int w = width / 2;
+  int h = w / 4;
+  int y = height - h;
+
+  // Divider(0, y-4, w, 2);
+  noStroke();
+  fill(c_hover);
+  rect(w*1, y-6, w, 4, 2);
   // if(switchTheme.show(200, 200, 80, 50).getSelected()) {
   //     themeSwitch = false;
   // }else{
