@@ -17,7 +17,7 @@ String info = "";
 KetaiList klist;
 
 ArrayList<String> devicesDiscovered = new ArrayList();
-boolean isConfiguring = true;
+byte isConfiguring = 1;
 
 int CONNECT_LIST = 0; 
 int DISCONNECT_LIST = 1;

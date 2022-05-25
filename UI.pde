@@ -1086,7 +1086,7 @@ public boolean Toggle(String text, boolean value, int x, int y, int w, int h) {
   textAlign(LEFT, CENTER);
   text(text, x, y, w, h);
   int pos_x = (int)textWidth(text);
-  return Toggle(value, x+10+pos_x, y, s_small, s_height);
+  return Toggle(value, x+30+pos_x, y, s_small, s_height);
 }
 
 public boolean Toggle(String text, boolean value, int x, int y) {

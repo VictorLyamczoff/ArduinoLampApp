@@ -270,5 +270,5 @@ void cfgTab() {
 
   Label(info, 10, width/2, 20);
 
-  // themeSwitch = Toggle("Dark theme",themeSwitch, 50, uiStep(), (int)textWidth("Dark theme"), 100);
+  themeSwitch = Toggle("Dark theme",themeSwitch, 50, uiStep(), 550, s_height);
 }
