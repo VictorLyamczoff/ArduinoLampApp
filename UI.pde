@@ -1172,8 +1172,8 @@ public float Slider(float min, float max, float value, int x, int y, int w, int 
       fill(c_hover);
       ellipse(pos, y+h/2, h-s_stroke, h-s_stroke);
     } else {
-      fill(red(c_hover), green(c_hover), blue(c_hover), 50);
-      ellipse(pos+x, y+h/2, h, h); 
+      // fill(red(c_hover), green(c_hover), blue(c_hover), 50);
+      // ellipse(pos+x, y+h/2, h, h); 
       fill(c_hover);
       ellipse(pos+x, y+h/2, h-s_stroke, h-s_stroke);
     }
@@ -1224,7 +1224,6 @@ public float Slider(String label, float value, int x, int y) {
 public float Slider(String label, float value, int x, int y, int w, int h) {
   return Slider(label, 0f, 255f, value, x, y, w, h);
 }
-
 public float Slider(float value, int x, int y, int w) {
   return Slider(0f, 255f, value, x, y, w, s_height);
 }
