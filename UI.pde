@@ -741,7 +741,7 @@ public class Toggle {
     textAlign(LEFT, CENTER);
     text(text, x, y, w, h);
     int pos_x = (int)textWidth(text);
-    return show(x+10+pos_x, y, s_small, s_height);
+    return show(x+30+pos_x, y, s_small, s_height);
   }
 
   public boolean show(String text, int x, int y) {

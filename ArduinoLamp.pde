@@ -58,6 +58,7 @@ void setup()
     file[0] = "1";
     saveStrings("settings.txt", file);
   }
+  themeSwitch = int(file[0]);
   // println(file);
 
   // ===================================== Запись в файл =====================================

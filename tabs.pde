@@ -6,7 +6,7 @@ color black = color(0, 0, 0);
 
 byte curTab = 0;
 
-boolean themeSwitch = true;
+int themeSwitch = 1;
 
 Toggle switchTheme = new Toggle();
 
@@ -32,7 +32,7 @@ void tabs() {
   if (curTab == 0) effTab();
   if (curTab == 1) cfgTab();
 
-  if (themeSwitch) {
+  if (themeSwitch == 1) {
     uiDark();
   } else {
     uiLight();
@@ -268,7 +268,49 @@ void cfgTab() {
 
   uiResetStep(200);
 
-  Label(info, 10, width/2, 20);
+  // Label(info, 10, width/2, 20);
 
-  themeSwitch = Toggle("Dark theme",themeSwitch, 50, uiStep(), 550, s_height);
+    if(Button("Theme", 50, uiStep(), 256, true)){
+   if(themeSwitch == 1){
+      themeSwitch = 0;
+      file[0] = "0";
+      saveStrings("settings.txt", file);
+      for (int i = 0; i < file.length; i++) {
+        info+=file[i]+"\n";
+      }
+   }else{
+      themeSwitch = 1;
+      file[0] = "1";
+      saveStrings("settings.txt", file);
+      for (int i = 0; i < file.length; i++) {
+        info+=file[i]+"\n";
+      }
+   }
+  }
+
+  if(themeSwitch == 1){
+    Label("Dark", 16, 326, uiPrevStep());
+  }else{
+    Label("Light", 16, 326, uiPrevStep());
+  }
+
+  // if(switchTheme.show("Theme", 50, uiStep(), 550, s_height)){
+  //  if(themeSwitch == 1){
+  //     themeSwitch = 0;
+  //     file[0] = "0";
+  //     saveStrings("settings.txt", file);
+  //     for (int i = 0; i < file.length; i++) {
+  //       info+=file[i]+"\n";
+  //     }
+  //  }else{
+  //     themeSwitch = 1;
+  //     file[0] = "1";
+  //     saveStrings("settings.txt", file);
+  //     for (int i = 0; i < file.length; i++) {
+  //       info+=file[i]+"\n";
+  //     }
+  //  }
+  // }
+
+  // themeSwitch = Toggle("Dark theme",themeSwitch, 50, uiStep(), 550, s_height);
 }
