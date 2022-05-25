@@ -228,20 +228,28 @@ public void Divider(int w) {
 
 // ====================================== BUTTON =======================================
 //Basic Text Button
-public boolean Button(String text, int x, int y, int w, int h) {
+public boolean Button(String text, int x, int y, int w, int h, boolean angel) {
   _prevX = x + w;
   stroke(c_very_dark);
   if (mouseX >= x && mouseX <= x+w && 
     mouseY >= y && mouseY <= y+h && !_drop_open) {
     fill(c_hover);
-    rect(x, y, w, h, angleRadiusButton);
+    if (angel) {
+      rect(x, y, w, h, angleRadiusButton);
+    } else {
+      rect(x, y, w, h);
+    }
     fill(c_text_color);
     textSize(medFontSize);
     textAlign(CENTER, CENTER);
     text(text, x, y, w, h);
 
     fill(c_light);
-    rect(x, y, w, h, angleRadiusButton);
+    if (angel) {
+      rect(x, y, w, h, angleRadiusButton);
+    } else {
+      rect(x, y, w, h);
+    }
     fill(c_text_color);
     textSize(medFontSize);
     textAlign(CENTER, CENTER);
@@ -249,7 +257,11 @@ public boolean Button(String text, int x, int y, int w, int h) {
 
     if (clicked && canClick) {
       fill(c_hover);
-      rect(x, y, w, h, angleRadiusButton);
+      if (angel) {
+        rect(x, y, w, h, angleRadiusButton);
+      } else {
+        rect(x, y, w, h);
+      }
       text(text, x, y, w, h);
       canClick = false;
       delay(10);
@@ -257,7 +269,11 @@ public boolean Button(String text, int x, int y, int w, int h) {
     }
   } else {
     fill(c_light);
-    rect(x, y, w, h, angleRadiusButton);
+    if (angel) {
+      rect(x, y, w, h, angleRadiusButton);
+    } else {
+      rect(x, y, w, h);
+    }
     fill(c_text_color);
     textSize(medFontSize);
     textAlign(CENTER, CENTER);
@@ -268,24 +284,24 @@ public boolean Button(String text, int x, int y, int w, int h) {
   return false;
 }
 
-boolean Button(String text) {
+boolean Button(String text, boolean angel) {
   int x;
   if (_x_offs != 0) x = _x_offs;
   else x = (width-s_med)/2;
-  return Button(text, x, uiStep(), s_med, s_height);
+  return Button(text, x, uiStep(), s_med, s_height, angel);
 }
 
-boolean Button(String text, int x) {
-  return Button(text, x, uiStep(), s_med, s_height);
+boolean Button(String text, int x, boolean angel) {
+  return Button(text, x, uiStep(), s_med, s_height, angel);
 }
 
-boolean Button(String text, int x, int y, int w) {
-  return Button(text, x, y, w, s_height);
+boolean Button(String text, int x, int y, int w, boolean angel) {
+  return Button(text, x, y, w, s_height, angel);
 }
 
 //Basic Text Button
-boolean Button(String text, int x, int y) {
-  return Button(text, x, y, s_med, s_height);
+boolean Button(String text, int x, int y, boolean angel) {
+  return Button(text, x, y, s_med, s_height, angel);
 }
 
 //Basic Text Button
@@ -961,7 +977,7 @@ public class DropDown {
     int h = s_height;
     w -= h;
     _drop_open = false;
-    if (Button(args[selected], x, y, w, h) || Button("", x+w, y, h, h)) open = !open;
+    if (Button(args[selected], x, y, w, h, true) || Button("", x+w, y, h, h, true)) open = !open;
     noStroke();
     if (!open) {
       triangle(x+w+h/4+1, y+0.28*h+1, x+w+h*3/4+1, y+0.28*h+1, x+w+h/2+1, y+0.71*h+1);
@@ -972,7 +988,7 @@ public class DropDown {
       fill(c_light);
       rect(x+0, y+h, w+h, s_height*args.length);
       for (int i=0; i<args.length; i++) {
-        if (Button(args[i], x, y + h + h*i, w+h, h)) {
+        if (Button(args[i], x, y + h + h*i, w+h, h, true)) {
           _drop_open = false;
           open = false;
           selected = i;
