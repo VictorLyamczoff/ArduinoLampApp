@@ -14,6 +14,10 @@ String iconNextDark = "svg/dark/next";
 String iconNextLight = "svg/light/next";
 String iconNext = iconNextLight;
 
+String iconPrevDark = "svg/dark/previous";
+String iconPrevLight = "svg/light/previous";
+String iconPrev = iconPrevLight;
+
 byte curTab = 0;
 
 int themeSwitch = 1;
@@ -47,11 +51,13 @@ void tabs() {
 
     iconPower = iconPowerLight;
     iconNext = iconNextLight;
+    iconPrev = iconPrevLight;
   } else {
     uiLight();
 
     iconPower = iconPowerDark;
     iconNext = iconNextDark;
+    iconPrev = iconPrevDark;
   }
 }
 
@@ -168,17 +174,17 @@ void effTab() {
   //   println(m);
   // }
 
-  // if (IconButton("svg/light/previous", (width/2)-376, uiPrevStep(), 256, 116, false)) {
-  //   String m = "$2,0;";
-  //   bt.broadcast(m.getBytes());
-  //   println(m);
-  // }
-
-  if (Button("<<", (width/2)-376, uiPrevStep(), 256, true)) {
+  if (IconButton(iconPrev, (width/2)-376, uiPrevStep(), 256, 116, false, true)) {
     String m = "$2,0;";
     bt.broadcast(m.getBytes());
     println(m);
   }
+
+  // if (Button("<<", (width/2)-376, uiPrevStep(), 256, true)) {
+  //   String m = "$2,0;";
+  //   bt.broadcast(m.getBytes());
+  //   println(m);
+  // }
 
 
   uiResetStep(900);
