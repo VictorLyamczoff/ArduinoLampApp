@@ -507,6 +507,41 @@ boolean IconButton(String icon, boolean select) {
   return IconButton(icon, (width-s_height)/2, uiStep(), s_height, s_height, select);
 }
 
+boolean IconButtonRound(String icon, int x, int y, int w, int h, boolean select) {
+  _prevX = x + w;
+  int p=min(w, h)/7;
+  int ix=x+p;
+  int iy=y+p;
+  int iw=min(w, h)-2*p;
+
+  if (w > h) ix = x+(w-iw)/2;
+  else if (w < h) iy = y+(h-iw)/2;
+
+  if (mouseX >= x && mouseX <= x+w && 
+    mouseY >= y && mouseY <= y+h && !_drop_open) {
+    fill(c_hover);
+    ellipse(x+w/2, y+h/2, w, h);
+    
+    fill(c_light);
+    ellipse(x+w/2, y+h/2, w, h);
+    Icon(icon, ix, iy, iw);
+    if (clicked && canClick) {
+      fill(c_hover);
+      ellipse(x+w/2, y+h/2, w, h);
+      Icon(icon, ix, iy, iw);
+      canClick = false;
+      return true;
+    }
+  } else {
+    if (select) fill(c_dark);
+    else fill(c_light);
+    ellipse(x+w/2, y+h/2, w, h);
+    Icon(icon, ix, iy, iw);
+    return false;
+  }
+  return false;
+}
+
 // ====================================== TEXT INPUT =======================================
 public class TextInput {
   String text = "";
