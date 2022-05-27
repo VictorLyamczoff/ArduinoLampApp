@@ -4,6 +4,8 @@ color blue = color(0, 0, 255);
 color white = color(255, 255, 255);
 color black = color(0, 0, 0);
 
+PImage logo;
+
 byte curTab = 0;
 
 int themeSwitch = 1;
@@ -49,7 +51,7 @@ void drawBTConnect(int pos_x, int pos_y, int size, boolean center) {
     text("Status: Not connected", pos_x, pos_y+10);
   } else {
     btStatus="";
-    ArrayList<String> devices = bt.getConnectedDeviceNames();  // 20
+    ArrayList<String> devices = bt.getConnectedDeviceNames();
     for (String device : devices)
     {
       btStatus = "Connect to "+device;
@@ -68,12 +70,19 @@ void effTab() {
   int h = w / 4;
   int y = height - h;
 
-  // Divider(0, y-4, w, 2);
+
   noStroke();
   fill(c_hover);
   rect(0, y-6, w, 4, 2);
 
-  LabelCenter("ArduinoLamp", 18, (width/2), 86);
+  if (themeSwitch == 1) {
+    logo = loadImage("png/light/logo.png");
+    image(logo, width/2-325, 100, 650, 150);
+  } else if (themeSwitch == 0) {
+    logo = loadImage("png/dark/logo.png"); 
+    image(logo, width/2-325, 100, 650, 150);
+  }
+
 
   uiResetStep(300);
 
@@ -121,17 +130,35 @@ void effTab() {
 
   uiResetStep(600);
 
+  //   if (IconButtonRound("svg/dark/previous",(width/2)-110, uiStep()-55, 220, 220, false)) {
+  //   String m = "$1;";
+  //   bt.broadcast(m.getBytes());
+  //   println(m);
+  // }
+
   if (Button("I/O", (width/2)-110, uiStep()-55, 220, 220, true)) {
     String m = "$1;";
     bt.broadcast(m.getBytes());
     println(m);
   }
 
+  // if (IconButton("svg/light/next", (width/2)+120, uiPrevStep(), 256, 116, false)) {
+  //   String m = "$2,1;";
+  //   bt.broadcast(m.getBytes());
+  //   println(m);
+  // }
+
   if (Button(">>", (width/2)+120, uiPrevStep(), 256, true)) {
     String m = "$2,1;";
     bt.broadcast(m.getBytes());
     println(m);
   }
+
+  // if (IconButton("svg/light/previous", (width/2)-376, uiPrevStep(), 256, 116, false)) {
+  //   String m = "$2,0;";
+  //   bt.broadcast(m.getBytes());
+  //   println(m);
+  // }
 
   if (Button("<<", (width/2)-376, uiPrevStep(), 256, true)) {
     String m = "$2,0;";
@@ -270,29 +297,31 @@ void cfgTab() {
 
   // Label(info, 10, width/2, 20);
 
-    if(Button("Theme", 50, uiStep(), 256, true)){
-   if(themeSwitch == 1){
+  if (Button("Theme", 50, uiStep(), 256, true)) {
+    if (themeSwitch == 1) {
       themeSwitch = 0;
       file[0] = "0";
       saveStrings("settings.txt", file);
       for (int i = 0; i < file.length; i++) {
         info+=file[i]+"\n";
       }
-   }else{
+    } else {
       themeSwitch = 1;
       file[0] = "1";
       saveStrings("settings.txt", file);
       for (int i = 0; i < file.length; i++) {
         info+=file[i]+"\n";
       }
-   }
+    }
   }
 
-  if(themeSwitch == 1){
+  if (themeSwitch == 1) {
     Label("Dark", 16, 326, uiPrevStep());
-  }else{
+  } else {
     Label("Light", 16, 326, uiPrevStep());
   }
+
+  // IconButton("bell", 100, 500, 500, 100);
 
   // if(switchTheme.show("Theme", 50, uiStep(), 550, s_height)){
   //  if(themeSwitch == 1){
