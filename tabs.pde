@@ -6,6 +6,10 @@ color black = color(0, 0, 0);
 
 PImage logo;
 
+String iconPowerDark = "svg/dark/power-off";
+String iconPowerLight = "svg/light/power-off";
+String iconPower = iconPowerLight;
+
 byte curTab = 0;
 
 int themeSwitch = 1;
@@ -36,8 +40,12 @@ void tabs() {
 
   if (themeSwitch == 1) {
     uiDark();
+
+    iconPower = iconPowerLight;
   } else {
     uiLight();
+
+    iconPower = iconPowerDark;
   }
 }
 
@@ -130,19 +138,19 @@ void effTab() {
 
   uiResetStep(600);
 
-  //   if (IconButtonRound("svg/dark/previous",(width/2)-110, uiStep()-55, 220, 220, false)) {
-  //   String m = "$1;";
-  //   bt.broadcast(m.getBytes());
-  //   println(m);
-  // }
-
-  if (Button("I/O", (width/2)-110, uiStep()-55, 220, 220, true)) {
+    if (IconButtonRound(iconPower,(width/2)-110, uiStep()-55, 220, 220, false)) {
     String m = "$1;";
     bt.broadcast(m.getBytes());
     println(m);
   }
 
-  // if (IconButton("svg/light/next", (width/2)+120, uiPrevStep(), 256, 116, false)) {
+  // if (Button("I/O", (width/2)-110, uiStep()-55, 220, 220, true)) {
+  //   String m = "$1;";
+  //   bt.broadcast(m.getBytes());
+  //   println(m);
+  // }
+
+  // if (IconButton("svg/light/next", (width/2)+120, uiPrevStep(), 256, 116, false, true)) {
   //   String m = "$2,1;";
   //   bt.broadcast(m.getBytes());
   //   println(m);
