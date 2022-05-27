@@ -22,6 +22,10 @@ String iconPlusDark = "svg/dark/plus";
 String iconPlusLight = "svg/light/plus";
 String iconPlus = iconPlusLight;
 
+String iconMinusDark = "svg/dark/minus";
+String iconMinusLight = "svg/light/minus";
+String iconMinus = iconMinusLight;
+
 byte curTab = 0;
 
 int themeSwitch = 1;
@@ -57,6 +61,7 @@ void tabs() {
     iconNext = iconNextLight;
     iconPrev = iconPrevLight;
     iconPlus = iconPlusLight;
+    iconMinus = iconMinusLight;
   } else {
     uiLight();
 
@@ -64,6 +69,7 @@ void tabs() {
     iconNext = iconNextDark;
     iconPrev = iconPrevDark;
     iconPlus = iconPlusDark;
+    iconMinus = iconMinusDark;
   }
 }
 
@@ -199,7 +205,7 @@ void effTab() {
   int brightnessTemp = int(btBrightness);
   int brightnessTempPrevious = int(btBrightnessPrevious);
 
-  if (Button("-", 100, uiStep(), 140, 140, true)) {
+  if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false)) {
     if (btBrightness > 0) {
       btBrightness -= 1.0;
     }
@@ -236,7 +242,7 @@ void effTab() {
   int scaleTemp = int(btScale);
   int scaleTempPrevious = int(btScalePrevious);
 
-  if (Button("-", 100, uiStep(), 140, 140, true)) {
+  if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false)) {
     if (btScale > 0) {
       btScale -= 1.0;
     }
@@ -269,7 +275,7 @@ void effTab() {
   int speedTemp = int(btSpeed);
   int speedTempPrevious = int(btSpeedPrevious);
 
-  if (Button("-", 100, uiStep(), 140, 140, true)) {
+  if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false)) {
     if (btSpeed > 0) {
       btSpeed -= 1.0;
     }
