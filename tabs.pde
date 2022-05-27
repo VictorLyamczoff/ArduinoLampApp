@@ -10,6 +10,10 @@ String iconPowerDark = "svg/dark/power-off";
 String iconPowerLight = "svg/light/power-off";
 String iconPower = iconPowerLight;
 
+String iconNextDark = "svg/dark/next";
+String iconNextLight = "svg/light/next";
+String iconNext = iconNextLight;
+
 byte curTab = 0;
 
 int themeSwitch = 1;
@@ -42,10 +46,12 @@ void tabs() {
     uiDark();
 
     iconPower = iconPowerLight;
+    iconNext = iconNextLight;
   } else {
     uiLight();
 
     iconPower = iconPowerDark;
+    iconNext = iconNextDark;
   }
 }
 
@@ -138,7 +144,7 @@ void effTab() {
 
   uiResetStep(600);
 
-    if (IconButtonRound(iconPower,(width/2)-110, uiStep()-55, 220, 220, false)) {
+  if (IconButtonRound(iconPower, (width/2)-110, uiStep()-55, 220, 220, false)) {
     String m = "$1;";
     bt.broadcast(m.getBytes());
     println(m);
@@ -150,17 +156,17 @@ void effTab() {
   //   println(m);
   // }
 
-  // if (IconButton("svg/light/next", (width/2)+120, uiPrevStep(), 256, 116, false, true)) {
-  //   String m = "$2,1;";
-  //   bt.broadcast(m.getBytes());
-  //   println(m);
-  // }
-
-  if (Button(">>", (width/2)+120, uiPrevStep(), 256, true)) {
+  if (IconButton(iconNext, (width/2)+120, uiPrevStep(), 256, 116, false, true)) {
     String m = "$2,1;";
     bt.broadcast(m.getBytes());
     println(m);
   }
+
+  // if (Button(">>", (width/2)+120, uiPrevStep(), 256, true)) {
+  //   String m = "$2,1;";
+  //   bt.broadcast(m.getBytes());
+  //   println(m);
+  // }
 
   // if (IconButton("svg/light/previous", (width/2)-376, uiPrevStep(), 256, 116, false)) {
   //   String m = "$2,0;";
