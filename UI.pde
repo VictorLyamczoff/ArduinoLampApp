@@ -444,7 +444,7 @@ boolean ImageButton(PImage img, boolean select) {
 }
 
 // ====================================== ICON BUTTON =======================================
-boolean IconButton(String icon, int x, int y, int w, int h, boolean select) {
+boolean IconButton(String icon, int x, int y, int w, int h, boolean select, boolean angel) {
   _prevX = x + w;
   int p=min(w, h)/9;
   int ix=x+p;
@@ -457,11 +457,33 @@ boolean IconButton(String icon, int x, int y, int w, int h, boolean select) {
   if (mouseX >= x && mouseX <= x+w && 
     mouseY >= y && mouseY <= y+h && !_drop_open) {
     fill(c_hover);
-    rect(x, y, w, h);
+    if (angel) {
+      rect(x, y, w, h, angleRadiusButton);
+    } else {
+      rect(x, y, w, h);
+    }
+
+    fill(c_light);
+    if (angel) {
+      rect(x, y, w, h, angleRadiusButton);
+    } else {
+      rect(x, y, w, h);
+    }
     Icon(icon, ix, iy, iw);
     if (clicked && canClick) {
       fill(c_light);
-      rect(x, y, w, h);
+      if (angel) {
+        rect(x, y, w, h, angleRadiusButton);
+      } else {
+        rect(x, y, w, h);
+      }
+
+      fill(c_hover);
+      if (angel) {
+        rect(x, y, w, h, angleRadiusButton);
+      } else {
+        rect(x, y, w, h);
+      }
       Icon(icon, ix, iy, iw);
       canClick = false;
       return true;
@@ -469,41 +491,45 @@ boolean IconButton(String icon, int x, int y, int w, int h, boolean select) {
   } else {
     if (select) fill(c_dark);
     else fill(c_light);
-    rect(x, y, w, h);
+    if (angel) {
+      rect(x, y, w, h, angleRadiusButton);
+    } else {
+      rect(x, y, w, h);
+    }
     Icon(icon, ix, iy, iw);
     return false;
   }
   return false;
 }
 
-boolean IconButton(String icon, int x, int y, int w, int h) {
-  return IconButton(icon, x, y, w, h, false);
+boolean IconButton(String icon, int x, int y, int w, int h, boolean angel) {
+  return IconButton(icon, x, y, w, h, false, angel);
 }
 
-boolean IconButton(String icon, int x, int y) {
-  return IconButton(icon, x, y, s_height, s_height, false);
+boolean IconButton(String icon, int x, int y, boolean angel) {
+  return IconButton(icon, x, y, s_height, s_height, false, angel);
 }
 
-boolean IconButton(String icon, int x, int y, boolean select) {
-  return IconButton(icon, x, y, s_height, s_height, select);
+boolean IconButton(String icon, int x, int y, boolean select, boolean angel) {
+  return IconButton(icon, x, y, s_height, s_height, select, angel);
 }
 
-boolean IconButton(String icon, int x) {
-  return IconButton(icon, x, uiStep(), s_height, s_height, false);
+boolean IconButton(String icon, int x, boolean angel) {
+  return IconButton(icon, x, uiStep(), s_height, s_height, false, angel);
 }
 
-boolean IconButton(String icon, int x, boolean select) {
-  return IconButton(icon, x, uiStep(), s_height, s_height, select);
+boolean IconButton(String icon, int x, boolean select, boolean angel) {
+  return IconButton(icon, x, uiStep(), s_height, s_height, select, angel);
 }
 
-boolean IconButton(String icon) {
+boolean IconButton(String icon, boolean angel) {
   int x;
   if (_x_offs != 0) x = _x_offs;
   else x = (width-s_height)/2;
-  return IconButton(icon, x, uiStep(), s_height, s_height, false);
+  return IconButton(icon, x, uiStep(), s_height, s_height, false, angel);
 }
 
-boolean IconButton(String icon, boolean select) {
+boolean IconButton(String icon, boolean select, boolean angel) {
   return IconButton(icon, (width-s_height)/2, uiStep(), s_height, s_height, select);
 }
 
@@ -521,7 +547,7 @@ boolean IconButtonRound(String icon, int x, int y, int w, int h, boolean select)
     mouseY >= y && mouseY <= y+h && !_drop_open) {
     fill(c_hover);
     ellipse(x+w/2, y+h/2, w, h);
-    
+
     fill(c_light);
     ellipse(x+w/2, y+h/2, w, h);
     Icon(icon, ix, iy, iw);
