@@ -51,6 +51,7 @@ void setup()
 
   bt.start();
 
+// ===================================== Чтение и апись файла =====================================
   file = loadStrings("settings.txt");
   if (file == null) {
     println("Settings text file is empty\nCreate new file");
@@ -59,21 +60,13 @@ void setup()
     saveStrings("settings.txt", file);
   }
   themeSwitch = int(file[0]);
-  // println(file);
+// ===================================== Чтение и апись файла =====================================
 
-  // ===================================== Запись в файл =====================================
-  // file[0] = "0";
-  // saveStrings("setttingss.txt", file);
-  // for (int i = 0; i < file.length; i++) {
-  //     info+=file[i]+"\n";
-  // }
-  // ===================================== Запись в файл =====================================
-
-  //   PFont font;
-  // // чтобы шрифт загрузился корректно, 
-  // // он должен находиться в папке «data» текущего скетча:
-  // font = createFont("BalooDa2-Regular.ttf", 32);
-  // textFont(font);
+// ===================================== Шрифт =====================================
+  PFont font;
+  font = createFont("fonts/BalooDa2-SemiBold.ttf", 32);
+  textFont(font);
+// ===================================== Шрифт =====================================
 }
 
 void draw() {
