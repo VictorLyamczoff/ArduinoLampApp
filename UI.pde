@@ -230,7 +230,8 @@ public void Divider(int w) {
 //Basic Text Button
 public boolean Button(String text, int x, int y, int w, int h, boolean angel) {
   _prevX = x + w;
-  stroke(c_very_dark);
+  // stroke(c_very_dark);
+  noStroke();
   if (mouseX >= x && mouseX <= x+w && 
     mouseY >= y && mouseY <= y+h && !_drop_open) {
     fill(c_hover);
@@ -445,6 +446,7 @@ boolean ImageButton(PImage img, boolean select) {
 
 // ====================================== ICON BUTTON =======================================
 boolean IconButton(String icon, int x, int y, int w, int h, boolean select, boolean angel) {
+  noStroke();
   _prevX = x + w;
   int p=min(w, h)/9;
   int ix=x+p;
