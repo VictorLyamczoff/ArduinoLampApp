@@ -157,35 +157,41 @@ void uiFill() {
 }
 
 // ====================================== LABEL =======================================
-public void LabelBase(String text, int size, int x, int y, boolean center) {
-  y += _step_y/2;
+public void LabelBase(String text, int size, int x, int y, int alignX, int alignY) {
   fill(c_text_color);
   textSize(int(size*_ui_scale));
-  if (center) textAlign(CENTER, CENTER);
-  else textAlign(LEFT, CENTER);
+  textAlign(alignX, alignY);
   text(text, x, y);
 }
 
+public void LabelBaseWH(String text, int size, int x, int y, int w, int h, int alignX, int alignY) {
+  fill(c_text_color);
+  fill(c_text_color);
+  textSize(int(size*_ui_scale));
+  textAlign(alignX, alignY);
+  text(text, x, y, w, h);
+}
+
 public void LabelCenter(String text, int size, int x, int y) {
-  LabelBase(text, size, x, y, true);
+  LabelBase(text, size, x, y, CENTER, CENTER);
 }
 public void LabelCenter(String text, int size, int x) {
-  LabelBase(text, size, x, uiStep(), true);
+  LabelBase(text, size, x, uiStep(), CENTER, CENTER);
 }
 public void LabelCenter(String text, int size) {
-  LabelBase(text, size, width/2, uiStep(), true);
+  LabelBase(text, size, width/2, uiStep(), CENTER, CENTER);
 }
-public void Label(String text, int size, int x, int y) {
-  LabelBase(text, size, x, y, false);
+public void Label(String text, int size, int x, int y, int alignX, int alignY) {
+  LabelBase(text, size, x, y, alignX, alignY);
 }
-public void Label(String text, int size, int x) {
-  LabelBase(text, size, x, uiStep(), false);
+public void Label(String text, int size, int x, int alignX, int alignY) {
+  LabelBase(text, size, x, uiStep(), alignX, alignY);
 }
-public void Label(String text, int size) {
+public void Label(String text, int size, int alignX, int alignY) {
   int x;
   if (_x_offs != 0) x = _x_offs;
   else x = width/2;
-  LabelBase(text, size, x, uiStep(), false);
+  LabelBase(text, size, x, uiStep(), alignX, alignY);
 }
 
 // ====================================== TOOLTIP =======================================
