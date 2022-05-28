@@ -29,6 +29,10 @@ String iconPlus = iconPlusLight;
 String iconMinusDark = "svg/dark/minus";
 String iconMinusLight = "svg/light/minus";
 String iconMinus = iconMinusLight;
+
+String iconThemeDark = "svg/dark/icon_dark_theme";
+String iconThemeLight = "svg/light/icon_light_theme";
+String iconTheme = iconThemeLight;
 // =================================================================================
 
 byte curTab = 0;
@@ -67,6 +71,7 @@ void tabs() {
     iconPrev = iconPrevLight;
     iconPlus = iconPlusLight;
     iconMinus = iconMinusLight;
+    iconTheme = iconThemeLight;
   } else {
     uiLight();
 
@@ -75,6 +80,7 @@ void tabs() {
     iconPrev = iconPrevDark;
     iconPlus = iconPlusDark;
     iconMinus = iconMinusDark;
+    iconTheme = iconThemeDark;
   }
 }
 
@@ -302,11 +308,16 @@ void cfgTab() {
   fill(c_hover);
   rect(w*1, y-6, w, 4, 2);
 
-  LabelCenter("Settings", 16, width/2, 20);
+  uiResetStep(150);
 
-  uiResetStep(200);
+  LabelCenter("Settings", 25, width/2, uiStep());
 
-  if (Button("Theme", 50, uiStep(), 256, true)) {
+  uiResetStep(300);
+
+  LabelBaseWH("Switch theme", 16, 50, uiStep(), 500, 115, LEFT, CENTER);
+
+
+  if (IconButton(iconTheme, 500, uiPrevStep(), 256, 115, false, true)) {
     if (themeSwitch == 1) {
       themeSwitch = 0;
       file[0] = "0";
@@ -322,11 +333,5 @@ void cfgTab() {
         info+=file[i]+"\n";
       }
     }
-  }
-
-  if (themeSwitch == 1) {
-    Label("Dark", 16, 326, uiPrevStep());
-  } else {
-    Label("Light", 16, 326, uiPrevStep());
   }
 }
