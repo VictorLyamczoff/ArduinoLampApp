@@ -10,8 +10,6 @@ import ketai.net.*;
 
 String[] file;
 
-PrintWriter output;
-
 KetaiBluetooth bt;
 String info = "";
 KetaiList klist;
@@ -27,9 +25,6 @@ boolean connectStatus = false;
 int uiScale = 4;
 
 float btBrightness, btBrightnessPrevious, btScale, btScalePrevious, btSpeed, btSpeedPrevious;
-
-TextInput input = new TextInput(" ");
-DropDown drop = new DropDown();
 
 void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);

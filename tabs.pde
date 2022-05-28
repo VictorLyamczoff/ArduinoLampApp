@@ -1,9 +1,13 @@
+// ===================================== Цвета =====================================
 color red = color(255, 0, 0);
 color green = color(0, 255, 0);
 color blue = color(0, 0, 255);
 color white = color(255, 255, 255);
 color black = color(0, 0, 0);
+// =================================================================================
 
+
+// ===================================== Иконки =====================================
 PImage logo;
 
 String iconPowerDark = "svg/dark/power-off";
@@ -25,6 +29,7 @@ String iconPlus = iconPlusLight;
 String iconMinusDark = "svg/dark/minus";
 String iconMinusLight = "svg/light/minus";
 String iconMinus = iconMinusLight;
+// =================================================================================
 
 byte curTab = 0;
 
@@ -168,36 +173,17 @@ void effTab() {
     println(m);
   }
 
-  // if (Button("I/O", (width/2)-110, uiStep()-55, 220, 220, true)) {
-  //   String m = "$1;";
-  //   bt.broadcast(m.getBytes());
-  //   println(m);
-  // }
-
   if (IconButton(iconNext, (width/2)+120, uiPrevStep(), 256, 116, false, true)) {
     String m = "$2,1;";
     bt.broadcast(m.getBytes());
     println(m);
   }
 
-  // if (Button(">>", (width/2)+120, uiPrevStep(), 256, true)) {
-  //   String m = "$2,1;";
-  //   bt.broadcast(m.getBytes());
-  //   println(m);
-  // }
-
   if (IconButton(iconPrev, (width/2)-376, uiPrevStep(), 256, 116, false, true)) {
     String m = "$2,0;";
     bt.broadcast(m.getBytes());
     println(m);
   }
-
-  // if (Button("<<", (width/2)-376, uiPrevStep(), 256, true)) {
-  //   String m = "$2,0;";
-  //   bt.broadcast(m.getBytes());
-  //   println(m);
-  // }
-
 
   uiResetStep(900);
 
@@ -234,8 +220,6 @@ void effTab() {
   }
 
   // ===================================== Scale =====================================
-
-  // Divider((width-(width-50))/2,uiStep(), width-50, 2);
 
   uiResetStep(uiStep()+50);
 
@@ -314,20 +298,13 @@ void cfgTab() {
   int h = w / 4;
   int y = height - h;
 
-  // Divider(0, y-4, w, 2);
   noStroke();
   fill(c_hover);
   rect(w*1, y-6, w, 4, 2);
-  // if(switchTheme.show(200, 200, 80, 50).getSelected()) {
-  //     themeSwitch = false;
-  // }else{
-  //     themeSwitch = true;
-  // }
+
   LabelCenter("Settings", 16, width/2, 20);
 
   uiResetStep(200);
-
-  // Label(info, 10, width/2, 20);
 
   if (Button("Theme", 50, uiStep(), 256, true)) {
     if (themeSwitch == 1) {
@@ -352,26 +329,4 @@ void cfgTab() {
   } else {
     Label("Light", 16, 326, uiPrevStep());
   }
-
-  // IconButton("bell", 100, 500, 500, 100);
-
-  // if(switchTheme.show("Theme", 50, uiStep(), 550, s_height)){
-  //  if(themeSwitch == 1){
-  //     themeSwitch = 0;
-  //     file[0] = "0";
-  //     saveStrings("settings.txt", file);
-  //     for (int i = 0; i < file.length; i++) {
-  //       info+=file[i]+"\n";
-  //     }
-  //  }else{
-  //     themeSwitch = 1;
-  //     file[0] = "1";
-  //     saveStrings("settings.txt", file);
-  //     for (int i = 0; i < file.length; i++) {
-  //       info+=file[i]+"\n";
-  //     }
-  //  }
-  // }
-
-  // themeSwitch = Toggle("Dark theme",themeSwitch, 50, uiStep(), 550, s_height);
 }

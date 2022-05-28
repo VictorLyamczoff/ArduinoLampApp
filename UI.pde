@@ -142,7 +142,8 @@ public void uiLight() {
   c_dark = color(205, 205, 205);
   c_mid = color(200);
   c_light = color(250);
-  c_hover = color(32, 155, 160);
+  c_hover = color(154, 139, 196);
+  // c_hover = color(32, 155, 160);
   c_text_color = color(10);
 }
 
