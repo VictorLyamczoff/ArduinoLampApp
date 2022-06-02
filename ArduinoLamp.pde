@@ -28,11 +28,11 @@ int timeTicker = 0;
 
 float btBrightness, btBrightnessPrevious, btScale, btScalePrevious, btSpeed, btSpeedPrevious;
 
-boolean timeTicker(int msc){
-  if(millis() - timeTicker >= msc){
+boolean timeTicker(int msc) {
+  if (millis() - timeTicker >= msc) {
     timeTicker = millis();
     return true;
-  }else{
+  } else {
     return false;
   }
 }
@@ -57,7 +57,7 @@ void setup()
 
   bt.start();
 
-// ===================================== Чтение и апись файла =====================================
+  // ===================================== Чтение и апись файла =====================================
   file = loadStrings("settings.txt");
   if (file == null) {
     println("Settings text file is empty\nCreate new file");
@@ -66,13 +66,13 @@ void setup()
     saveStrings("settings.txt", file);
   }
   themeSwitch = int(file[0]);
-// ===================================== Чтение и апись файла =====================================
+  // ===================================== Чтение и апись файла =====================================
 
-// ===================================== Шрифт =====================================
+  // ===================================== Шрифт =====================================
   PFont font;
   font = createFont("fonts/BalooDa2-SemiBold.ttf", 32);
   textFont(font);
-// ===================================== Шрифт =====================================
+  // ===================================== Шрифт =====================================
 }
 
 void draw() {

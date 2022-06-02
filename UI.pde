@@ -564,12 +564,11 @@ boolean IconButtonRound(String icon, int x, int y, int w, int h, boolean select,
       fill(c_hover);
       ellipse(x+w/2, y+h/2, w, h);
       Icon(icon, ix, iy, iw);
-      if(!canHold)
+      if (!canHold)
         canClick = false;
       return true;
     }
-  } 
-  else {
+  } else {
     if (select) fill(c_dark);
     else fill(c_light);
     ellipse(x+w/2, y+h/2, w, h);
