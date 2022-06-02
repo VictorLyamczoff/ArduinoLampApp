@@ -24,7 +24,18 @@ boolean connectStatus = false;
 
 int uiScale = 4;
 
+int timeTicker = 0;
+
 float btBrightness, btBrightnessPrevious, btScale, btScalePrevious, btSpeed, btSpeedPrevious;
+
+boolean timeTicker(int msc){
+  if(millis() - timeTicker >= msc){
+    timeTicker = millis();
+    return true;
+  }else{
+    return false;
+  }
+}
 
 void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
@@ -100,7 +111,7 @@ void onKetaiListSelection(KetaiList klist)
     if (!selection.equals("CANCEL")) {
       bt.connectToDeviceByName(selection);
     }
-  } else if (listState == DISCONNECT_LIST)
+  } else if (listState == DISCONNECT_LIST && !selection.equals("CANCEL"))
   {
     bt.disconnectDevice(selection);
   }
