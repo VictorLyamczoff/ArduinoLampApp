@@ -20,11 +20,13 @@ byte isConfiguring = 1;
 int CONNECT_LIST = 0; 
 int DISCONNECT_LIST = 1;
 int listState = CONNECT_LIST;
-boolean connectStatus = false;
+boolean connectStarted = false;
 
 int uiScale = 4;
 
 int timeTicker = 0;
+
+String connectedDevice = "";
 
 float btBrightness, btBrightnessPrevious, btScale, btScalePrevious, btSpeed, btSpeedPrevious;
 
@@ -40,6 +42,19 @@ boolean timeTicker(int msc) {
 boolean isConnectedToDevice() {
   if (bt.getConnectedDeviceNames().isEmpty()) return false;
   else return true;
+}
+
+void autoConnection() {
+  if (!isConnectedToDevice() && autoConnect && !connectStarted) {
+    if (connectedDevice.length() > 0 && listState != DISCONNECT_LIST) {
+      listState = CONNECT_LIST;
+
+      if (bt.getPairedDeviceNames().size() > 0) {
+        bt.connectToDeviceByName(connectedDevice);
+        connectStarted = true;
+      }
+    }
+  }
 }
 
 void onCreate(Bundle savedInstanceState) {
@@ -66,11 +81,16 @@ void setup()
   file = loadStrings("settings.txt");
   if (file == null) {
     println("Settings text file is empty\nCreate new file");
-    file = new String[1];
+    file = new String[3];
     file[0] = "1";
+    file[1] = "false";
+    file[2] = "";
     saveStrings("settings.txt", file);
   }
   themeSwitch = int(file[0]);
+  autoConnect = boolean(file[1]);
+  connectedDevice = file[2];
+  // println("*" + file[2] + "*");
   // ===================================== Чтение и апись файла =====================================
 
   // ===================================== Шрифт =====================================
@@ -81,6 +101,7 @@ void setup()
 }
 
 void draw() {
+  autoConnection();
   tabs();
 }
 
@@ -115,6 +136,7 @@ void onKetaiListSelection(KetaiList klist)
   {
     if (!selection.equals("CANCEL")) {
       bt.connectToDeviceByName(selection);
+      connectedDevice = selection;
     }
   } else if (listState == DISCONNECT_LIST && !selection.equals("CANCEL"))
   {
