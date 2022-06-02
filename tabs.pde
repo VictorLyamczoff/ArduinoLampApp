@@ -86,13 +86,7 @@ void tabs() {
 
 void drawBTConnect(int pos_x, int pos_y, int size, boolean center) {
 
-  if (bt.getConnectedDeviceNames().isEmpty()) {
-    fill(red);
-    textSize(int(size*_ui_scale));
-    if (center) textAlign(CENTER, CENTER);
-    else textAlign(LEFT, CENTER);
-    text("Status: Not connected", pos_x, pos_y+10);
-  } else {
+  if (isConnectedToDevice()) {
     btStatus="";
     ArrayList<String> devices = bt.getConnectedDeviceNames();
     for (String device : devices)
@@ -104,6 +98,12 @@ void drawBTConnect(int pos_x, int pos_y, int size, boolean center) {
     if (center) textAlign(CENTER, CENTER);
     else textAlign(LEFT, CENTER);
     text("Status: "+btStatus, pos_x, pos_y+20);
+  } else {
+    fill(red);
+    textSize(int(size*_ui_scale));
+    if (center) textAlign(CENTER, CENTER);
+    else textAlign(LEFT, CENTER);
+    text("Status: Not connected", pos_x, pos_y+10);
   }
 }
 
