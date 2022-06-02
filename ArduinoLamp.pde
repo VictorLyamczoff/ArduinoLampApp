@@ -37,6 +37,11 @@ boolean timeTicker(int msc) {
   }
 }
 
+boolean isConnectedToDevice() {
+  if (bt.getConnectedDeviceNames().isEmpty()) return false;
+  else return true;
+}
+
 void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
   bt = new KetaiBluetooth(this);
