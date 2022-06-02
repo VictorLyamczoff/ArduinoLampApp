@@ -173,20 +173,20 @@ void effTab() {
 
   uiResetStep(600);
 
-  if (IconButtonRound(iconPower, (width/2)-110, uiStep()-55, 220, 220, false)) {
+  if (IconButtonRound(iconPower, (width/2)-110, uiStep()-55, 220, 220, false, false)) {
     String m = "$1;";
     bt.broadcast(m.getBytes());
     println(m);
   }
 
   if (IconButton(iconNext, (width/2)+120, uiPrevStep(), 256, 116, false, true)) {
-    String m = "$2,1;";
+    String m = "$3;";
     bt.broadcast(m.getBytes());
     println(m);
   }
 
   if (IconButton(iconPrev, (width/2)-376, uiPrevStep(), 256, 116, false, true)) {
-    String m = "$2,0;";
+    String m = "$2;";
     bt.broadcast(m.getBytes());
     println(m);
   }
@@ -197,17 +197,21 @@ void effTab() {
   int brightnessTemp = int(btBrightness);
   int brightnessTempPrevious = int(btBrightnessPrevious);
 
-  if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false)) {
-    if (btBrightness > 0) {
-      btBrightness -= 1.0;
+  if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false, true)) {
+    if (timeTicker(10)) {
+      btBrightness = constrain(btBrightness - 1, 0, 255);
+      String btBrightness = "$5;";
+      bt.broadcast(btBrightness.getBytes());
     }
   }
 
   LabelCenter("Brightness: " + str(int(btBrightness)), 12, (width/2), uiPrevStep());
 
-  if (IconButtonRound(iconPlus, 840, uiPrevStep(), 140, 140, false)) {
-    if (btBrightness <= 255) {
-      btBrightness += 1.0;
+  if (IconButtonRound(iconPlus, 840, uiPrevStep(), 140, 140, false, true)) {
+    if (timeTicker(10)) {
+      btBrightness = constrain(btBrightness + 1, 0, 255);
+      String btBrightness = "$4;";
+      bt.broadcast(btBrightness.getBytes());
     }
   }
 
@@ -215,15 +219,15 @@ void effTab() {
 
 
 
-  if (brightnessTemp != brightnessTempPrevious) {
-    String bcString = "$4," + str(brightnessTemp) + ";";
-    bt.broadcast(bcString.getBytes());
+  // if (brightnessTemp != brightnessTempPrevious) {
+  //   String bcString = "$4," + str(brightnessTemp) + ";";
+  //   bt.broadcast(bcString.getBytes());
 
-    println(bcString);
+  //   println(bcString);
 
-    btBrightnessPrevious = btBrightness;
-    brightnessTemp = brightnessTempPrevious;
-  }
+  //   btBrightnessPrevious = btBrightness;
+  //   brightnessTemp = brightnessTempPrevious;
+  // }
 
   // ===================================== Scale =====================================
 
@@ -232,30 +236,40 @@ void effTab() {
   int scaleTemp = int(btScale);
   int scaleTempPrevious = int(btScalePrevious);
 
-  if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false)) {
-    if (btScale > 0) {
-      btScale -= 1.0;
+  if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false, true)) {
+    if (timeTicker(10)) {
+      btScale = constrain(btScale - 1, 0, 255);
+      String btScale = "$7;";
+      bt.broadcast(btScale.getBytes());
     }
   }
 
   LabelCenter("Scale: " + str(int(btScale)), 12, (width/2), uiPrevStep());
 
-  if (IconButtonRound(iconPlus, 840, uiPrevStep(), 140, 140, false)) {
-    if (btScale <= 255) {
-      btScale += 1.0;
+  if (IconButtonRound(iconPlus, 840, uiPrevStep(), 140, 140, false, true)) {
+    if (timeTicker(10)) {
+      btScale = constrain(btScale + 1, 0, 255);
+      String btScale = "$6;";
+      bt.broadcast(btScale.getBytes());
     }
   }
 
-
   btScale = Slider(btScale, (width/2)-845/2, uiStep(), 845, s_height);
 
-  if (scaleTemp!= scaleTempPrevious) {
-    String bcString = "$5," + str(scaleTemp) + ";";
-    bt.broadcast(bcString.getBytes());
-    println(bcString);
-    btScalePrevious = btScale;
-    scaleTemp = scaleTempPrevious;
-  }
+  // if(timeTicker(50))
+  // if (scaleTemp > scaleTempPrevious) {
+  //   String bcString = "$6";
+  //   bt.broadcast(bcString.getBytes());
+  //   println(bcString);
+  //   btScalePrevious = btScale;
+  //   scaleTemp = scaleTempPrevious;
+  // }else{
+  //       String bcString = "$7";
+  //   bt.broadcast(bcString.getBytes());
+  //   println(bcString);
+  //   btScalePrevious = btScale;
+  //   scaleTemp = scaleTempPrevious;
+  // }
 
 
 
@@ -265,17 +279,21 @@ void effTab() {
   int speedTemp = int(btSpeed);
   int speedTempPrevious = int(btSpeedPrevious);
 
-  if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false)) {
-    if (btSpeed > 0) {
-      btSpeed -= 1.0;
+  if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false, true)) {
+    if (timeTicker(10)) {
+      btSpeed = constrain(btSpeed - 1, 0, 255);
+      String btSpeed = "$9;";
+      bt.broadcast(btSpeed.getBytes());
     }
   }
 
   LabelCenter("Speed: " + str(int(btSpeed)), 12, (width/2), uiPrevStep());
 
-  if (IconButtonRound(iconPlus, 840, uiPrevStep(), 140, 140, false)) {
-    if (btSpeed <= 255) {
-      btSpeed += 1.0;
+  if (IconButtonRound(iconPlus, 840, uiPrevStep(), 140, 140, false, true)) {
+    if (timeTicker(10)) {
+      btSpeed = constrain(btSpeed + 1, 0, 255);
+      String btSpeed = "$8;";
+      bt.broadcast(btSpeed.getBytes());
     }
   }
 
@@ -283,17 +301,17 @@ void effTab() {
 
   btSpeed = Slider(btSpeed, (width/2)-845/2, uiStep(), 845, s_height);
 
-  if (speedTemp!= speedTempPrevious) {
-    String bcString = "$6," + str(speedTemp) + ";";
-    bt.broadcast(bcString.getBytes());
-    println(bcString);
-    btSpeedPrevious = btSpeed;
-    speedTemp = speedTempPrevious;
-  }
+  // if (speedTemp!= speedTempPrevious) {
+  //   String bcString = "$6," + str(speedTemp) + ";";
+  //   bt.broadcast(bcString.getBytes());
+  //   println(bcString);
+  //   btSpeedPrevious = btSpeed;
+  //   speedTemp = speedTempPrevious;
+  // }
 
   // ===================================== Save =====================================
   if (Button("Save", (width/2)-128, uiStep(), 256, true)) {
-    String m = "$3;";
+    String m = "$10;";
     bt.broadcast(m.getBytes());
     println(m);
   }
