@@ -542,7 +542,7 @@ boolean IconButton(String icon, boolean select, boolean angel) {
   return IconButton(icon, (width-s_height)/2, uiStep(), s_height, s_height, select);
 }
 
-boolean IconButtonRound(String icon, int x, int y, int w, int h, boolean select) {
+boolean IconButtonRound(String icon, int x, int y, int w, int h, boolean select, boolean canHold) {
   _prevX = x + w;
   int p=min(w, h)/7;
   int ix=x+p;
@@ -560,14 +560,16 @@ boolean IconButtonRound(String icon, int x, int y, int w, int h, boolean select)
     fill(c_light);
     ellipse(x+w/2, y+h/2, w, h);
     Icon(icon, ix, iy, iw);
-    if (clicked && canClick) {
+    if (mousePressed && canClick) {
       fill(c_hover);
       ellipse(x+w/2, y+h/2, w, h);
       Icon(icon, ix, iy, iw);
-      canClick = false;
+      if(!canHold)
+        canClick = false;
       return true;
     }
-  } else {
+  } 
+  else {
     if (select) fill(c_dark);
     else fill(c_light);
     ellipse(x+w/2, y+h/2, w, h);
