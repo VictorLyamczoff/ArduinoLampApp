@@ -177,13 +177,13 @@ void effTab() {
     println(m);
   }
 
-  if (IconButton(iconNext, (width/2)+120, uiPrevStep(), 256, 116, false, true)) {
+  if (IconButton(iconNext, (width/2)+140, uiPrevStep(), 256, 116, false, true)) {
     String m = "$3;";
     bt.broadcast(m.getBytes());
     println(m);
   }
 
-  if (IconButton(iconPrev, (width/2)-376, uiPrevStep(), 256, 116, false, true)) {
+  if (IconButton(iconPrev, (width/2)-396, uiPrevStep(), 256, 116, false, true)) {
     String m = "$2;";
     bt.broadcast(m.getBytes());
     println(m);
@@ -193,16 +193,16 @@ void effTab() {
 
   // ===================================== Brightness =====================================
 
-  if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false, true)) {
+  if (IconButtonRound(iconMinus, 100, uiStep(), 200, 200, false, true)) {
     if (timeTicker(10)) {
       String btBrightness = "$5;";
       bt.broadcast(btBrightness.getBytes());
     }
   }
 
-  LabelCenter("Brightness", 12, (width/2), uiPrevStep() + 70);
+  LabelCenter("Brightness", 16, (width/2), uiPrevStep() + 100);
 
-  if (IconButtonRound(iconPlus, 840, uiPrevStep(), 140, 140, false, true)) {
+  if (IconButtonRound(iconPlus, 780, uiPrevStep(), 200, 200, false, true)) {
     if (timeTicker(10)) {
       String btBrightness = "$4;";
       bt.broadcast(btBrightness.getBytes());
@@ -221,18 +221,18 @@ void effTab() {
 
   // ===================================== Scale =====================================
 
-  uiResetStep(uiStep()+50);
+  uiResetStep(uiStep()+200);
 
-  if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false, true)) {
+  if (IconButtonRound(iconMinus, 100, uiStep(), 200, 200, false, true)) {
     if (timeTicker(10)) {
       String btScale = "$7;";
       bt.broadcast(btScale.getBytes());
     }
   }
 
-  LabelCenter("Scale", 12, (width/2), uiPrevStep() + 70);
+  LabelCenter("Scale", 16, (width/2), uiPrevStep() + 100);
 
-  if (IconButtonRound(iconPlus, 840, uiPrevStep(), 140, 140, false, true)) {
+  if (IconButtonRound(iconPlus, 780, uiPrevStep(), 200, 200, false, true)) {
     if (timeTicker(10)) {
       String btScale = "$6;";
       bt.broadcast(btScale.getBytes());
@@ -257,18 +257,18 @@ void effTab() {
 
 
   // ===================================== Speed =====================================
-  uiResetStep(uiStep()+50);
+  uiResetStep(uiStep()+200);
 
-  if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false, true)) {
+  if (IconButtonRound(iconMinus, 100, uiStep(), 200, 200, false, true)) {
     if (timeTicker(10)) {
       String btSpeed = "$9;";
       bt.broadcast(btSpeed.getBytes());
     }
   }
 
-  LabelCenter("Speed", 12, (width/2), uiPrevStep() + 70);
+  LabelCenter("Speed", 16, (width/2), uiPrevStep() + 100);
 
-  if (IconButtonRound(iconPlus, 840, uiPrevStep(), 140, 140, false, true)) {
+  if (IconButtonRound(iconPlus, 780, uiPrevStep(), 200, 200, false, true)) {
     if (timeTicker(10)) {
       String btSpeed = "$8;";
       bt.broadcast(btSpeed.getBytes());
@@ -284,6 +284,8 @@ void effTab() {
   // }
 
   // ===================================== Save =====================================
+  uiResetStep(uiStep()+200);
+
   if (Button("Save", (width/2)-128, uiStep(), 256, true)) {
     String m = "$10;";
     bt.broadcast(m.getBytes());
