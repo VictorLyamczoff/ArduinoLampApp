@@ -192,30 +192,22 @@ void effTab() {
   uiResetStep(900);
 
   // ===================================== Brightness =====================================
-  int brightnessTemp = int(btBrightness);
-  int brightnessTempPrevious = int(btBrightnessPrevious);
 
   if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false, true)) {
     if (timeTicker(10)) {
-      btBrightness = constrain(btBrightness - 1, 0, 255);
       String btBrightness = "$5;";
       bt.broadcast(btBrightness.getBytes());
     }
   }
 
-  LabelCenter("Brightness: " + str(int(btBrightness)), 12, (width/2), uiPrevStep());
+  LabelCenter("Brightness", 12, (width/2), uiPrevStep() + 70);
 
   if (IconButtonRound(iconPlus, 840, uiPrevStep(), 140, 140, false, true)) {
     if (timeTicker(10)) {
-      btBrightness = constrain(btBrightness + 1, 0, 255);
       String btBrightness = "$4;";
       bt.broadcast(btBrightness.getBytes());
     }
   }
-
-  btBrightness = Slider(btBrightness, (width/2)-845/2, uiStep(), 845, s_height);
-
-
 
   // if (brightnessTemp != brightnessTempPrevious) {
   //   String bcString = "$4," + str(brightnessTemp) + ";";
