@@ -223,28 +223,21 @@ void effTab() {
 
   uiResetStep(uiStep()+50);
 
-  int scaleTemp = int(btScale);
-  int scaleTempPrevious = int(btScalePrevious);
-
   if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false, true)) {
     if (timeTicker(10)) {
-      btScale = constrain(btScale - 1, 0, 255);
       String btScale = "$7;";
       bt.broadcast(btScale.getBytes());
     }
   }
 
-  LabelCenter("Scale: " + str(int(btScale)), 12, (width/2), uiPrevStep());
+  LabelCenter("Scale", 12, (width/2), uiPrevStep() + 70);
 
   if (IconButtonRound(iconPlus, 840, uiPrevStep(), 140, 140, false, true)) {
     if (timeTicker(10)) {
-      btScale = constrain(btScale + 1, 0, 255);
       String btScale = "$6;";
       bt.broadcast(btScale.getBytes());
     }
   }
-
-  btScale = Slider(btScale, (width/2)-845/2, uiStep(), 845, s_height);
 
   // if(timeTicker(50))
   // if (scaleTemp > scaleTempPrevious) {
