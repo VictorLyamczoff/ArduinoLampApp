@@ -259,30 +259,21 @@ void effTab() {
   // ===================================== Speed =====================================
   uiResetStep(uiStep()+50);
 
-  int speedTemp = int(btSpeed);
-  int speedTempPrevious = int(btSpeedPrevious);
-
   if (IconButtonRound(iconMinus, 100, uiStep(), 140, 140, false, true)) {
     if (timeTicker(10)) {
-      btSpeed = constrain(btSpeed - 1, 0, 255);
       String btSpeed = "$9;";
       bt.broadcast(btSpeed.getBytes());
     }
   }
 
-  LabelCenter("Speed: " + str(int(btSpeed)), 12, (width/2), uiPrevStep());
+  LabelCenter("Speed", 12, (width/2), uiPrevStep() + 70);
 
   if (IconButtonRound(iconPlus, 840, uiPrevStep(), 140, 140, false, true)) {
     if (timeTicker(10)) {
-      btSpeed = constrain(btSpeed + 1, 0, 255);
       String btSpeed = "$8;";
       bt.broadcast(btSpeed.getBytes());
     }
   }
-
-
-
-  btSpeed = Slider(btSpeed, (width/2)-845/2, uiStep(), 845, s_height);
 
   // if (speedTemp!= speedTempPrevious) {
   //   String bcString = "$6," + str(speedTemp) + ";";
