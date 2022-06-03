@@ -43,6 +43,8 @@ Toggle switchTheme = new Toggle();
 
 String btStatus = "";
 
+boolean autoConnect = false;
+
 void tabs() {
   uiFill();
 
@@ -131,7 +133,7 @@ void effTab() {
 
   if (Button("Connect", (width/2)-330, uiStep(), 320, true)) {
 
-    if (!connectStatus) {
+    if (!isConnectedToDevice()) {
       String btInfo = "";
       listState = CONNECT_LIST;
 
@@ -144,15 +146,13 @@ void effTab() {
         list.add("CANCEL");
         klist = new KetaiList(this, list);
       }
-      connectStatus = true;
     }
   }
 
   if (Button("Disconnect", (width/2)+10, uiPrevStep(), 320, true)) {
 
-    if (connectStatus) {
+    if (isConnectedToDevice()) {
 
-      String btInfo = "";
       listState = DISCONNECT_LIST;
 
       if (bt.getDiscoveredDeviceNames().size() > 0) {
@@ -164,8 +164,6 @@ void effTab() {
         list.add("CANCEL");
         klist = new KetaiList(this, list);
       }
-
-      connectStatus = false;
     }
   }
 
@@ -350,6 +348,27 @@ void cfgTab() {
       for (int i = 0; i < file.length; i++) {
         info+=file[i]+"\n";
       }
+    }
+  }
+
+  LabelBaseWH("Auto connect", 16, 50, uiStep(), 500, 115, LEFT, CENTER);
+
+  // autoConnect = Toggle(autoConnect, 500, uiPrevStep(), 256, 115);
+  // println(autoConnect);
+  // if (autoConnect == true) {
+  //   file[1] = "true";
+  //   saveStrings("settings.txt", file);
+  // } else {
+  //   file[1] = "false";
+  //   saveStrings("settings.txt", file);
+  // }
+
+  if (Toggle(autoConnect, 500, uiPrevStep(), 256, 115)) {
+    if (connectedDevice.length() > 0) {
+      autoConnect = !autoConnect;
+      file[1] = str(autoConnect);
+      file[2] = connectedDevice;
+      saveStrings("settings.txt", file);
     }
   }
 }
